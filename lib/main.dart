@@ -1,6 +1,18 @@
+import 'package:flashcards/dependencies_register/plugins_dependencies.dart';
+import 'package:flashcards/src/plugins/injection/app_injector.dart';
 import 'package:flutter/material.dart';
 
+void registerDependencies() {
+  PluginDependencies(AppInjector.I).registerDependencies();
+}
+
+void initialize() {
+  registerDependencies();
+}
+
 void main() {
+  initialize();
+
   runApp(const MyApp());
 }
 
