@@ -2,18 +2,22 @@ import 'package:flashcards/dependencies_register/plugins_dependencies.dart';
 import 'package:flashcards/src/plugins/injection/app_injector.dart';
 import 'package:flutter/material.dart';
 
-void registerDependencies() {
-  PluginDependencies(AppInjector.I).registerDependencies();
+Future<void> registerDependencies() async {
+  await PluginDependencies(AppInjector.I).registerDependencies();
 }
 
-void initialize() {
-  registerDependencies();
+Future<void> initialize() async {
+  await registerDependencies();
+}
+
+Future<void> appStart() async {
+  await initialize();
+
+  runApp(const MyApp());
 }
 
 void main() {
-  initialize();
-
-  runApp(const MyApp());
+  appStart();
 }
 
 class MyApp extends StatelessWidget {
